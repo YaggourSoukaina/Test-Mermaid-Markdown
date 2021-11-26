@@ -1,6 +1,7 @@
 name: 'Render Mermaid in Markdown'
 
 on:
+  workflow_dispatch:
   push:
     branches: 
       - main
