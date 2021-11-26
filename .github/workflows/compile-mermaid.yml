@@ -28,7 +28,7 @@ jobs:
 
       - name: compile mermaid
         id: mermaid-compile
-        uses: YaggourSoukaina/compile-mermaid-markdown-action@main
+        uses: YaggourSoukaina/Test-Mermaid-Markdown@main
         with:
           files: ${{ steps.getfile.outputs.files }}
           output: '.resources'
