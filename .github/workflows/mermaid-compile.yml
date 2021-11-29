@@ -1,54 +1,20 @@
-name: 'Render Mermaid in Markdown'
+name: render-md-mermaid
 
-on:
-  workflow_dispatch:
-  push:
-    branches: 
-      - main
-    paths:
-      - '**/*.md'
+on: push
 
 jobs:
-   mermaid:
-
-    name: "Update mermaid diagram renders in Markdown"
+  render-md-mermaid:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
 
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: get changed files
-      id: getfile
-      run: |
-        echo "::set-output name=files::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -e '.*\.md$' | xargs)"
-    - name: md files changed
-      run: |
-        echo ${{ steps.getfile.outputs.files }}
-    - name: Update mermaid diagram images
-      if: steps.getfile.outputs.files
-      uses: ./
-      with:
-        files: ${{ steps.getfile.outputs.files }}
+      - name: Render images for every Mermaid diagram in all Markdown files (*.md) in the repo.
+        uses: ./
 
-    - name: show changes
-      id: changes
-      run: |
-        echo "::set-output name=files::$(git status --porcelain | sed -e 's!.*/!!' | xargs)"
-    - name: md files tocommit
-      run: |
-        echo ${{ steps.changes.outputs.files }}
-    - name: Commit files
-      if: steps.changes.outputs.files
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git commit -m "Updated markdown diagrams [ci skip]" -a
-    - name: Push changes
-      if: steps.changes.outputs.files
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
+      - name: Commit rendered png and svg files
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: "*[.svg,.png]"
+          commit_message: automatically rendered mermaid diagrams
