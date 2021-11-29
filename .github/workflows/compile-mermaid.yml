@@ -16,7 +16,10 @@ jobs:
       - uses: google-github-actions/setup-gcloud@master
         with:
           fetch-depth: 2
-
+          
+      - name: Compile Mermaid Markdown
+        uses: neenjaw/compile-mermaid-markdown-action@v0.3.3
+         
       - name: get changed files
         id: getfile
         run: |
@@ -51,3 +54,6 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          
+
+
