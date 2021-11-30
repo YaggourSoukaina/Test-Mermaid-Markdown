@@ -1,25 +1,21 @@
 name: 'Compile Mermaid in Markdown'
 
 on:
-   workflow_dispatch:
-   push:
-    branches: 
-      - main
+  push:
     paths:
-      - '**/*.md'
+      - '**/*.mmd'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: google-github-actions/setup-gcloud@master
-        with:
-          fetch-depth: 2
-          
       - name: Compile Mermaid Markdown
         uses: neenjaw/compile-mermaid-markdown-action@v0.3.3
-         
+
+        with:
+          fetch-depth: 2
+
       - name: get changed files
         id: getfile
         run: |
@@ -30,8 +26,7 @@ jobs:
           echo ${{ steps.getfile.outputs.files }}
 
       - name: compile mermaid
-        id: mermaid-compile
-        uses: YaggourSoukaina/Test-Mermaid-Markdown@main
+        uses: neenjaw/compile-mermaid-markdown-action@0.3.1
         with:
           files: ${{ steps.getfile.outputs.files }}
           output: '.resources'
@@ -53,8 +48,8 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
           
 
 
