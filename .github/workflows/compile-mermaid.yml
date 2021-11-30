@@ -24,8 +24,8 @@ jobs:
         run: |
           echo ${{ steps.getfile.outputs.files }}
 
-      - name: compile mermaid
-        uses: YaggourSoukaina/Test-Mermaid-Markdown@main
+      - name: Compile Mermaid Markdown (beta)
+        uses: Marloxo/compile-mermaid-markdown-action@0.2.3
         with:
           files: ${{ steps.getfile.outputs.files }}
           output: '.resources'
