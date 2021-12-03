@@ -1,6 +1,7 @@
 name: 'Compile Mermaid'
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - '**/*.mermaid'
