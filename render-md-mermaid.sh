@@ -1,6 +1,6 @@
 # This can be invoked on any Markdown file to render embedded mermaid diagrams, provided they are presented in the following format:
 #
-# ![rendered image description](demo/rendered_image.png)
+# ![rendered image description](demo/.)
 # <details>
 #   <summary>diagram source</summary>
 #   This details block is collapsed by default when viewed in GitHub. This hides the mermaid graph definition, while the rendered image
