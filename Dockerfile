@@ -4,4 +4,5 @@ FROM minlag/mermaid-cli:latest
 COPY entrypoint.sh /entrypoint.sh
 COPY render-md-mermaid.sh /render-md-mermaid.sh
 
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
