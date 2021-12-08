@@ -5,6 +5,7 @@ WORKDIR /render-md-mermaid.sh
 COPY entrypoint.sh /entrypoint.sh
 COPY render-md-mermaid.sh /render-md-mermaid.sh
 
-RUN ["chmod", "+x", "/docker-entrypoint.sh"]
-ENTRYPOINT ["/entrypoint.sh"]
+ENV ENTRYPOINT_PATH / render-md-mermaid.sh
+
+ENTRYPOINT ["/render-md-mermaid.sh/entrypoint.sh"]
 CMD [ "--help" ]
