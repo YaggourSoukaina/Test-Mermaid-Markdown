@@ -11,9 +11,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        
+      - id: --user root 
 
       - name: Render images for every Mermaid diagram in all Markdown files (*.md) in the repo.
         uses: YaggourSoukaina/Test-Mermaid-Markdown@main
+        
 
 
       - name: Commit rendered png and svg files
