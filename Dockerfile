@@ -1,10 +1,10 @@
-# FROM debian:9.5-slim
-FROM minlag/mermaid-cli:latest
+FROM neenjaw/mermaid:8.7.0
 
-COPY entrypoint.sh /entrypoint.sh
-COPY render-md-mermaid.sh /render-md-mermaid.sh
+WORKDIR /mmdc
+COPY . /mmdc
 
-RUN ["chmod", "render-md-mermaid.sh", "/entrypoint.sh"]
+ENV ENTRYPOINT_PATH /mmdc
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT [ "/mmdc/entrypoint.sh" ]
+CMD [ "--help" ]
 
