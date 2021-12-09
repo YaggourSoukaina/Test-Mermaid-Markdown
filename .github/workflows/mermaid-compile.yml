@@ -1,8 +1,6 @@
 name: render-md-mermaid
 
-on:
- workflow_dispatch:
- push:
+on: push
 
 jobs:
   render-md-mermaid:
@@ -11,12 +9,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
 
       - name: Render images for every Mermaid diagram in all Markdown files (*.md) in the repo.
-        uses: YaggourSoukaina/Test-Mermaid-Markdown@main
-        
-
+        uses: ./
 
       - name: Commit rendered png and svg files
         uses: stefanzweifel/git-auto-commit-action@v4
