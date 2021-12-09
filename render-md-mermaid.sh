@@ -1,6 +1,9 @@
+#!/usr/bin/env bash
+# Usage: render-md-mermaid.sh document.md
+#
 # This can be invoked on any Markdown file to render embedded mermaid diagrams, provided they are presented in the following format:
 #
-# ![rendered image description](demo/.)
+# ![rendered image description](relative/path/to/rendered_image.png)
 # <details>
 #   <summary>diagram source</summary>
 #   This details block is collapsed by default when viewed in GitHub. This hides the mermaid graph definition, while the rendered image
@@ -8,17 +11,25 @@
 #
 # ```mermaid
 # graph LR
-#    A[Christmas] -->|Get money| B(Go shopping)
-#    B --> C{Let me think}
-#    C -->|One| D[Laptop]
-#    C -->|Two| E[iPhone]
-#    C -->|Three| F[fa:fa-car Car]
+#     A[README.md]
+#     B{Find mermaid graphs<br>and image paths}
+#     C[[docker mermaid-cli]]
+#     D[[docker mermaid-cli]]
+#     E(Graph 1 png image)
+#     F(Graph 2 svg image)
+#
+#     A -->|passed to| B
+#     subgraph render-md-mermaid.sh
+#       B --> |path/to/image1.png<br>+mermaid source| C
+#       B --> |path/to/image2.svg<br>+mermaid source| D
+#     end
+#     C --> E
+#     D --> F
 # ```
 # </details>
 #
 # The script will pick up the graph definition from the mermaid code block and render it to the image file and path specified in the
 # image tag using mermaid-cli. The rendered image can be in svg or png format, whatever is specified will be generated.
-
 
 set -eu
 if [ "$1" == "" ]; then
