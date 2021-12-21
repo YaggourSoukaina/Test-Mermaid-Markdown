@@ -3,20 +3,19 @@
 #
 # This can be invoked on any Markdown file to render embedded mermaid diagrams, provided they are presented in the following format:
 #
-# ![rendered image description](relative/path/to/demo_rendered_image.png)
+# ![rendered image description](output/rendered_image.png)
 # <details>
 #  <summary>diagram source</summary>
 #  This details block is collapsed by default when viewed in GitHub. This hides the mermaid graph definition, while the rendered image
 # linked above is shown. The details tag has to follow the image tag. (newlines allowed)'
 #
 # ```mermaid
-# Graph LR 
-#    A[Christmas] -->|Get money| B(Go shopping) 
-#    B --> C{Let me think} 
-#    C -->|One| D[Laptop] 
-#    C -->|Two| E[iPhone] 
-#    C -->|Three| F[fa:fa-car Car]
-# ```
+# graph TD;
+#    A-->B;
+#    A-->C;
+#    B-->D;
+#    C-->D;
+#```
 # </details>
 #
 # Das Skript holt die Diagrammdefinition aus dem Meerjungfrau-Codeblock und rendert sie in die Bilddatei und den Pfad, die im angegeben sind
