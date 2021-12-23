@@ -35,8 +35,8 @@ echo  " Markdown-Datei: $markdown_input "
 rm -f .demo-md-mermaid-config.json .demo-md-mermaid.css
 mermaid_config= ' {"flowchart": {"useMaxWidth": false }} '
 mermaid_css= ' #container > svg { max-width: 100% !important; } '
-echo  " $mermaid_config "  >> .render-md-mermaid-config.json
-echo  " $mermaid_css "  >> .render-md-mermaid.css
+echo  " $mermaid_config "  >> .demo-md-mermaid-config.json
+echo  " $mermaid_css "  >> .demo-md-mermaid.css
 
 mermaid_file= " "
 IFS= $' \n '
